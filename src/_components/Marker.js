@@ -10,14 +10,11 @@ export default class Marker extends Component {
 
   static defaultProps = {};
 
-  handleClick(event) {
-    // do something meaningful
-    console.log(this.props)
-    this.props.update()
+  handleClick() {
+    this.props.update(this.props.place,this.props.mag)
   }
 
   render() {
-     // console.log(this.props)
     const size = this.props.mag * 10;
     const anotherStyle = {
       width: size,

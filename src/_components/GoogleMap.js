@@ -19,46 +19,28 @@ class GoogleMap extends Component {
   };
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       place: "",
-      mag: "",
-    }
+      mag: ""
+    };
     this.updateState = this.updateState.bind(this);
   }
 
-  updateState() {
-    this.setState({place: this.state.place, mag: this.state.mag})
+  updateState(place, mag) {
+    this.setState({ place: place, mag: mag });
   }
-
-  createMarkers = () => {
-    const markers = [];
-    this.props.data.forEach((loc, key) => {
-      markers.push(
-        <Marker
-          update={this.updateState}
-          lat={loc.lat}
-          lng={loc.lng}
-          key={loc.id}
-          mag={loc.mag}
-          place={loc.place}
-        />
-      );
-    });
-    return markers;
-  };
 
   componentDidMount() {
     this.props.fetchDataAction();
   }
 
   render() {
-    console.log(this.state)
+    const { data } = this.props;
     return (
-      // Important! Always set the container height explicitly
       <div>
-        <h2 style={{ padding: "20px" }}>Earthquakes!</h2>
-        <div style={{ height: "50vh", width: "80%", padding: "20px" }}>
+        <h2>Earthquakes!</h2>
+        <div className={"mapStyle"}>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: API_KEY,
@@ -68,10 +50,26 @@ class GoogleMap extends Component {
             defaultZoom={this.props.zoom}
             hoverDistance={K_SIZE / 2}
           >
-            {this.createMarkers()}
+            {data &&
+              data.map((loc, key) => {
+                return (
+                  <Marker
+                    update={this.updateState}
+                    lat={loc.lat}
+                    lng={loc.lng}
+                    key={loc.id}
+                    mag={loc.mag}
+                    place={loc.place}
+                  />
+                );
+              })}
           </GoogleMapReact>
         </div>
-          <p>{this.props.place}</p>
+        <p>
+          {this.state.place
+            ? `Earthquake of magnitude ${this.state.mag} at ${this.state.place}`
+            : ""}
+        </p>
       </div>
     );
   }
