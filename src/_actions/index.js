@@ -2,7 +2,7 @@ import { fetchData } from "../_services/fetchData";
 
 const dataFormat = data => ({
   id: data.id,
-  type: data.properties.type,
+  place: data.properties.place,
   mag: data.properties.mag,
   lng: data.geometry.coordinates[0],
   lat: data.geometry.coordinates[1]
