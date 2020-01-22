@@ -12,6 +12,8 @@ export default class Marker extends Component {
 
   handleClick(event) {
     // do something meaningful
+    console.log(this.props)
+    this.props.update()
   }
 
   render() {
@@ -25,6 +27,6 @@ export default class Marker extends Component {
       borderRadius: size
     };
     const style = this.props.$hover ? markerStyleHover : markerStyle;
-    return <div style={{ ...style, ...anotherStyle }} onClick={() => this.props.update()}></div>;
+    return <div style={{ ...style, ...anotherStyle }} onClick={() => this.handleClick()}></div>;
   }
 }
