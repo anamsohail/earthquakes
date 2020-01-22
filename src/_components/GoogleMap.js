@@ -18,14 +18,30 @@ class GoogleMap extends Component {
     zoom: 1
   };
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      place: "",
+      mag: "",
+    }
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState() {
+    this.setState({place: this.state.place, mag: this.state.mag})
+  }
+
   createMarkers = () => {
     const markers = [];
     this.props.data.forEach((loc, key) => {
       markers.push(
         <Marker
+          update={this.updateState}
           lat={loc.lat}
           lng={loc.lng}
           key={loc.id}
+          mag={loc.mag}
+          place={loc.place}
         />
       );
     });
@@ -37,6 +53,7 @@ class GoogleMap extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       // Important! Always set the container height explicitly
       <div>
@@ -54,6 +71,7 @@ class GoogleMap extends Component {
             {this.createMarkers()}
           </GoogleMapReact>
         </div>
+          <p>{this.props.place}</p>
       </div>
     );
   }
