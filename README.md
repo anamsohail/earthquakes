@@ -1,12 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Description
-This web app is fetching data from the USGS API (https://earthquake.usgs.gov/fdsnws/event/1/) and displaying the results in Google Map.
-The size of the map markers reflect the magnitude of the earthquake. Clicking on a marker gives more information about that earthquake.
+This web app is fetching data from the USGS API (https://earthquake.usgs.gov/fdsnws/event/1/) and displaying the results in Google Map.<br />
+The size of the map markers reflect the magnitude of the earthquake. Clicking on a marker gives more information about that earthquake.<br />
 The data presented here is from September 2015 as it shows varying degrees of magnitude of the earthquakes.
 
 ## Install/Setup
-Google map API requires API_KEY. For this purpose, create .env file in the root folder and input:
+Google map API requires API_KEY.<br />
+For this purpose, create .env file in the root folder and input:<br />
 REACT_APP_API_KEY = YOUR_API_KEY_HERE
 
 ## Available Scripts
